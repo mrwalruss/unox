@@ -1,15 +1,16 @@
-# (App Name Here)
+# Unox
 
 This is my entry in [Phoenix Phrenzy](https://phoenixphrenzy.com), showing off what [Phoenix](https://phoenixframework.org/) and [LiveView](https://github.com/phoenixframework/phoenix_live_view) can do.
 
 ![App Name Here preview](assets/static/images/preview.gif "App Name Here")
 
-# Phrenzy Instructions
+## The name
 
-Fork this repo and start build an application! See [Phoenix Phrenzy](https://phoenixphrenzy.com) for details.
+The Unox game name has been taken to make sure no copyright infrigment is done using the [Uno](https://en.wikipedia.org/wiki/Uno_(card_game)). This is a public and open source implementation of the game mechanics with multiplayer online support with random name generator.
 
-Note: for development, you'll need Elixir, Erlang and Node.js. If you use the [asdf version manager](https://github.com/asdf-vm/asdf) and install the [relevant plugins](https://asdf-vm.com/#/plugins-all?id=plugin-list), you can install the versions specified in `.tool-versions` with `asdf install`.
+## About cards
 
+Cards uses svg taken from [https://en.wikipedia.org/wiki/Uno_(card_game)#/media/File:UNO_cards_deck.svg](https://en.wikipedia.org/wiki/Uno_(card_game)#/media/File:UNO_cards_deck.svg) which is under CC0 lisence are granted usage and modification.
 
 ## Deployment
 
