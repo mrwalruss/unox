@@ -1,5 +1,5 @@
-defmodule LiveViewDemoWeb.Router do
-  use LiveViewDemoWeb, :router
+defmodule UnoxWeb.Router do
+  use UnoxWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,15 +14,10 @@ defmodule LiveViewDemoWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", LiveViewDemoWeb do
+  scope "/", UnoxWeb do
     pipe_through :browser
 
     get "/", PageController, :index
     live "/clock", ClockLive
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", LiveViewDemoWeb do
-  #   pipe_through :api
-  # end
 end

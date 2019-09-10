@@ -1,9 +1,9 @@
-defmodule LiveViewDemo.MixProject do
+defmodule Unox.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :live_view_demo,
+      app: :unox,
       version: "0.1.0",
       elixir: "~> 1.9.1",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule LiveViewDemo.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {LiveViewDemo.Application, []},
+      mod: {Unox.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -35,16 +35,12 @@ defmodule LiveViewDemo.MixProject do
     [
       {:phoenix, "~> 1.4.9"},
       {:phoenix_pubsub, "~> 1.1"},
-      {:phoenix_ecto, "~> 4.0"},
       {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"},
-      {:ecto_sql, "~> 3.1"},
-      {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:calendar, "~> 0.17.6"}
+      {:plug_cowboy, "~> 2.0"}
     ]
   end
 
