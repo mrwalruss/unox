@@ -15,6 +15,9 @@ defmodule Unox.Card do
   def is_black?(%Card{color: :black}), do: true
   def is_black?(%Card{}), do: false
 
+  @spec has_color?(Unox.Card.t()) :: boolean
+  def has_color?(card), do: not is_black?(card)
+
   @spec fits_on_top?(Unox.Card.t(), Unox.Card.t()) :: boolean
   def fits_on_top?(bottom, top) do
     cond do
@@ -25,6 +28,8 @@ defmodule Unox.Card do
     end
   end
 
+  @type card_tuple :: {nil | atom, nil | atom | integer}
+  @spec matches?(Unox.Card.t(), card_tuple) :: boolean
   def matches?(%Card{value: card_value, color: card_color}, {card_color, card_value}), do: true
   def matches?(%Card{color: card_color}, {card_color, nil}), do: true
   def matches?(%Card{value: card_value}, {nil, card_value}), do: true
