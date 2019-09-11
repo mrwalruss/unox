@@ -1,2 +1,9 @@
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
-
+@import "~normalize.css/normalize.css";
+@import "variables";
+@import "players";
+@import "table";
+@import "login";
+@import "lobby";
+@import "card";
+@import "game";

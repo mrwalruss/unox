@@ -1,0 +1,72 @@
+.lobby {
+  display: flex;
+  flex: 1;
+  flex-flow: column;
+
+  .title {
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: row;
+    justify-content: space-between;
+    padding: 1em;
+    border-bottom: 1px solid #d7d7d7;
+    background-color: #f9f9f9;
+    margin-bottom: 1rem;
+
+    & .container {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .new-game {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .game-card {
+    padding: 1rem;
+    background-color: #fbfbfb;
+    transition: 0.2s all ease-in-out;
+    margin: 5px;
+    border: 2px solid darken(#fbfbfb, 5%);
+    border-radius: 3px;
+    & a {
+      color: $text-color;
+      text-decoration: none;
+    }
+    & h3 {
+      margin: 0;
+
+      & ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        color: white;
+        font-size: 9pt;
+        display: flex;
+        float: right;
+        li {
+          padding: 2px 6px;
+          border-radius: 4px;
+          margin: 0px 2px;
+        }
+      }
+    }
+    &:hover {
+      background-color: darken(#fbfbfb, 5%);
+      cursor: pointer;
+    }
+  }
+}
+
+.empty-box {
+  width: 100%;
+  background-color: #f0f0f0;
+  color: #a6a6a6;
+  text-align: center;
+  padding: 5rem 1rem;
+  margin-top: 1rem;
+}

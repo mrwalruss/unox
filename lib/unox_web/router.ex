@@ -10,14 +10,24 @@ defmodule UnoxWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  pipeline :logged_in do
+    plug UnoxWeb.LoadPlayer
   end
 
   scope "/", UnoxWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
-    live "/clock", ClockLive
+    get "/login", LoginController, :index
+    post "/login", LoginController, :login
+  end
+
+  scope "/", UnoxWeb do
+    pipe_through [:browser, :logged_in]
+
+    get "/", LobbyController, :index
+    get "/new", LobbyController, :new
+    post "/game", GameController, :create
+    get "/game/:id", GameController, :index
+    get "/logout", LoginController, :logout
   end
 end

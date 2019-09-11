@@ -1,0 +1,43 @@
+.login {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  & > form {
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: column;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    max-width: 500px;
+    width: 100%;
+
+    button {
+      background-color: $primary;
+      padding: 0.7rem 0rem;
+      border-radius: 3px;
+      border: 0;
+      color: white;
+      cursor: pointer;
+      transition: 0.1s all ease-in-out;
+
+      &:hover, &:focus, &:active {
+        background-color: darken($primary, 10%);
+      }
+    }
+  }
+
+  .form-input {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 0.5rem;
+
+    label {
+      margin-bottom: 0.3rem;
+      color: lighten($text-color, 10%);
+    }
+  }
+}

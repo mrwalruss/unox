@@ -1,0 +1,77 @@
+.players {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+
+  padding-top: 1em;
+
+  .item {
+    font-size: 10pt;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0px 0.6em;
+    box-shadow: 0px 1px 1px #fff;
+
+    &.current {
+      box-shadow: 0px 0px 6px #d5d5d559;
+      border: 1px solid #777;
+      border-radius: 5px;
+
+      & > .title {
+        background-color: #777;
+        color: #fff;
+      }
+    }
+
+    &.winner {
+      border: 1px solid $green;
+
+      & > .title {
+        background-color: $green;
+        color: #fff;
+      }
+    }
+
+    &:first-child {
+      margin-left: 0px;
+    }
+
+    &:last-child {
+      margin-right: 0px;
+    }
+
+    .title {
+      background-color: #eee;
+      padding: 0.4em 1.2em;
+
+    }
+
+    .body {
+      padding: 0.4em;
+      justify-content: center;
+      display: flex;
+
+      .card-icon {
+        display: flex;
+        width: 20px;
+        height: 29px;
+        vertical-align: middle;
+        flex: 0 0 auto;
+        justify-content: center;
+        align-items: center;
+        background-color: #eaeaea;
+        border: 1px solid #4f4f4f;
+        color: #4f4f4f;
+        border-radius: 4px;
+      }
+
+      .you {
+        display: flex;
+        align-items: center;
+        padding: 0rem 1rem;
+      }
+    }
+  }
+}

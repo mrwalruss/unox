@@ -2,6 +2,8 @@ defmodule Unox.Card do
   defstruct value: nil, color: nil
   alias Unox.Card
 
+  def hidden(), do: %Card{}
+
   @spec equals?(Unox.Card.t(), Unox.Card.t()) :: boolean
   def equals?(first, second), do: same_color?(first, second) and same_value?(first, second)
 

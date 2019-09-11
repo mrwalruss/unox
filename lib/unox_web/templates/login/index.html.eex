@@ -1,0 +1,15 @@
+<div class="login">
+  <%= form_for @conn, Routes.login_path(@conn, :login), [], fn _ -> %>
+    <h1><%= gettext("Login to Unox") %></h1>
+    <p><%= gettext("Use any username to login and choose a password so you can comeback and play again later.") %></p>
+    <div class="form-input">
+      <label for="">Username</label>
+      <input type="text" value="<%= suggest_name() %>" name="name">
+    </div>
+    <div class="form-input">
+      <label for="">Password</label>
+      <input type="password" value="" name="password" placeholder="Password">
+    </div>
+    <button><%= gettext("Login") %></button>
+  <% end %>
+</div>

@@ -1,0 +1,37 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  flex: 1;
+  height: 99vh;
+  color: $text-color;
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.game {
+  display: flex;
+  flex: 1;
+  flex-flow: column;
+  .auto-size {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: center;
+  }
+  .full-size {
+    display: flex;
+    padding: 2em 0;
+    justify-content: center;
+    flex: 1;
+    align-items: center
+  }
+}
+
+input {
+  padding: 0.8em 0.6em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}

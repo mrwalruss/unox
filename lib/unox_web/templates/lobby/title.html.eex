@@ -1,0 +1,11 @@
+<div class="title">
+  <div class="container">
+    <div class="username" title="<%= current_player(@conn).id %>">
+      <%= gettext("Logged in as %{name}", name: current_player(@conn).name) %>
+    </div>
+    <div class="nav">
+      <a href="<%= @button.url %>"><%= @button.text %></a>
+      <a href="<%= Routes.login_path(@conn, :logout) %>"><%= gettext("Logout") %></a>
+    </div>
+  </div>
+</div>

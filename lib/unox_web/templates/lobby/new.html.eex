@@ -1,0 +1,11 @@
+
+<div class="lobby">
+  <%= render("title.html", %{conn: @conn, button: %{text: "Back to lobby", url: Routes.lobby_path(@conn, :index)}}) %>
+  <div class="new-game">
+    <%= form_for @conn, Routes.game_path(@conn, :create), [], fn _ -> %>
+      <label for=""><%= gettext("Game name") %></label>
+      <input type="text" name="name" >
+      <button type="submit"><%= gettext("Create game") %></button>
+    <% end %>
+  </div>
+</div>

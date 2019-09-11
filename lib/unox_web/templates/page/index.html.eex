@@ -1,1 +1,0 @@
-<%= render_card(%Unox.Card{value: nil, color: nil}) %>

@@ -1,0 +1,80 @@
+$puck-size: 4em;
+
+.table {
+  .row {
+    display: flex;
+    flex: 1;
+
+    .cell {
+      display: flex;
+      flex: 1;
+      flex-flow: column;
+
+      p {
+        font-size: 0.8em;
+        text-align: center;
+      }
+
+      .stack {
+        position: relative;
+
+        & > svg {
+          position: absolute;
+
+          &:nth-child(2) {
+            margin-left: 2em;
+            margin-top: 0.5em;
+          }
+          &:nth-child(3) {
+            margin-left: 4em;
+            margin-top: 1em;
+          }
+        }
+      }
+    }
+  }
+}
+
+.colors {
+  .color-puck {
+    transition: 0.1s all ease-in-out;
+    width: $puck-size;
+    height: $puck-size;
+    border-radius: 1000px;
+    margin: 1.2em 0.6em;
+    border: 3px solid white;
+    opacity: 0;
+
+    box-shadow: 0px 0px 3px #2b2b2b82;
+
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+    &.red {
+      background-color: $red;
+    }
+    &.yellow {
+      background-color: $yellow;
+    }
+    &.blue {
+      background-color: $blue;
+    }
+    &.green {
+      background-color: $green;
+    }
+  }
+
+  &.visible {
+    & > .color-puck {
+      opacity: 1;
+
+      &:hover {
+        box-shadow: 0px 0px 8px #2b2b2b66;
+        cursor: pointer;
+      }
+    }
+  }
+}

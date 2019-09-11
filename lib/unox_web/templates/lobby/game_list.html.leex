@@ -1,0 +1,24 @@
+<div class="games container">
+  <form phx-change="search">
+    <input type="text" name="search" autocomplete="off" placeholder="<%= gettext("Search for a game") %>">
+    <%= if length(@games) > 0 do %>
+      <%= for %{id: id, name: name, players: players} = game <- @games do %>
+      <div class="game-card">
+        <a href="/game/<%= id %>">
+          <h3>
+            <%= name %>
+            <ul>
+              <%= for {color, text} <- tags(game, @player_id) do %>
+                <li class="tag" style="background-color: <%= color %>"><%= text %></li>
+              <% end %>
+            </ul>
+          </h3>
+          <p><%= render_players(players) %></p>
+        </a>
+      </div>
+      <% end %>
+    <% else %>
+      <div class="empty-box">No games started yet</div>
+    <% end %>
+  </form>
+</div>

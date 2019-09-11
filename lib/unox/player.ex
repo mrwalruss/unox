@@ -1,12 +1,13 @@
 defmodule Unox.Player do
-  defstruct id: nil, name: nil, hand: []
+  defstruct id: nil, name: nil, hand: [], password: nil
   alias Unox.{Player, Utils}
 
-  @spec new([String.t()]) :: [Unox.Player.t()]
+  @type new_user :: {String.t(), String.t()}
+  @spec new([new_user]) :: [Unox.Player.t()]
   def new(names) when is_list(names), do: Enum.map(names, &new/1)
 
-  @spec new(String.t()) :: Unox.Player.t()
-  def new(name), do: %Player{id: Utils.id(), name: name}
+  @spec new(new_user) :: Unox.Player.t()
+  def new({name, password}), do: %Player{id: Utils.id(), name: name, password: password}
 
   @spec new(String.t(), String.t()) :: Unox.Player.t()
   def new(id, name), do: %Player{id: id, name: name}

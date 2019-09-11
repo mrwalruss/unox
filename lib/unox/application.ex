@@ -3,7 +3,9 @@ defmodule Unox.Application do
 
   def start(_type, _args) do
     children = [
-      UnoxWeb.Endpoint
+      UnoxWeb.Endpoint,
+      UnoxWeb.GameStore,
+      UnoxWeb.PlayerStore
     ]
 
     opts = [strategy: :one_for_one, name: Unox.Supervisor]
