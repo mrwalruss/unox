@@ -7,9 +7,6 @@
 # General application configuration
 use Mix.Config
 
-config :unox,
-  ecto_repos: [Unox.Repo]
-
 # Configures the endpoint
 config :unox, UnoxWeb.Endpoint,
   url: [host: "localhost"],
