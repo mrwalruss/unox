@@ -1,7 +1,10 @@
-<div class="auto-size">
+<div class="lobby-head">
+  <a href="<%= Routes.lobby_path(UnoxWeb.Endpoint, :index) %>"><%= gettext("Return to lobby") %></a>
+</div>
+<div class="auto-size" id="game" data-game-name="<%= @game.name %>">
   <div class="players">
     <%= for {%{id: id, name: name, hand: hand}, _} <- Enum.with_index(@game.players) do %>
-      <div class="<%= player_item_class(@game, id, @player_id) %>">
+      <div class="<%= player_item_class(@game, id, @player_id) %>" phx-hook="notifyTurn">
         <div class="title"><%= name %></div>
         <div class="body">
           <div class="card-icon"><%= length(hand) %></div>
@@ -31,14 +34,14 @@
   </div>
   <div class="auto-size colors <%= if can_set_color?(@game, @player_id), do: "visible" %>">
   <%= for color <- colors() do %>
-    <div class="color-puck <%= color %>" phx-click="set-color" phx-value="<%= color %>" onclick=""></div>
+    <div class="color-puck <%= color %>" phx-click="set-color" phx-value-color="<%= color %>" onclick=""></div>
   <% end %>
   </div>
   <div class="auto-size">
     <%= if is_playing?(@game, @player_id) do %>
     <div class="player-hand">
       <%= for {card, index} <- player_hand(@game, @player_id) do %>
-        <%= render_card(card, class: (if playable?(@game, @player_id, card), do: "playable"), "phx-click": "play", "phx-value": index) %>
+        <%= render_card(card, class: (if playable?(@game, @player_id, card), do: "playable"), "phx-click": "play", "phx-value-index": index) %>
       <% end %>
     </div>
     <% end %>
@@ -51,7 +54,7 @@
       <% joined?(@game, @player_id) -> %>
         <p><%= gettext("Waiting...") %></p>
       <% not full?(@game) -> %>
-        <button type="button" phx-click="join" phx-value="<%= @player_id %>"><%= gettext("Join") %></button>
+        <button type="button" phx-click="join" phx-value-player-id="<%= @player_id %>"><%= gettext("Join") %></button>
       <% true -> %>
         <p><%= gettext("Game is full, but you can still watch!") %></p>
     <% end %>

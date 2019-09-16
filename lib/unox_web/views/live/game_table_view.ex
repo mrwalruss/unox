@@ -24,7 +24,7 @@ defmodule UnoxWeb.Live.GameTableView do
     {:noreply, sync(socket)}
   end
 
-  def handle_event("play", index, socket) do
+  def handle_event("play", %{"index" => index}, socket) do
     if can_play?(socket) do
       with {:ok, game} <- Game.play_at(get_game_from_socket(socket), index) do
         save(game)
@@ -39,7 +39,7 @@ defmodule UnoxWeb.Live.GameTableView do
 
   def handle_event("draw", _, socket) do
     if can_play?(socket) do
-      mutate_game(socket, &(Game.player_draw(&1)))
+      mutate_game(socket, &Game.player_draw(&1))
 
       {:noreply, sync(socket)}
     else
@@ -47,9 +47,9 @@ defmodule UnoxWeb.Live.GameTableView do
     end
   end
 
-  def handle_event("set-color", color, socket) do
+  def handle_event("set-color", %{"color" => color}, socket) do
     if can_set_color?(socket) do
-      mutate_game(socket, &(Game.set_color(&1, color)))
+      mutate_game(socket, &Game.set_color(&1, color))
 
       {:noreply, sync(socket)}
     else
@@ -57,8 +57,8 @@ defmodule UnoxWeb.Live.GameTableView do
     end
   end
 
-  def handle_event("join", player_id, socket) do
-    mutate_game(socket, &(add_player(&1, player_id)))
+  def handle_event("join", %{"player-id" => player_id}, socket) do
+    mutate_game(socket, &add_player(&1, player_id))
     {:noreply, sync(socket)}
   end
 

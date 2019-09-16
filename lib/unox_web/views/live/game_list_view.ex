@@ -23,7 +23,6 @@ defmodule UnoxWeb.Live.GameListView do
     {:noreply, socket}
   end
 
-  @spec handle_info(:update | {:change, map} | %{topic: <<_::40>>}, Phoenix.LiveView.Socket.t()) :: {:noreply, any}
   def handle_info(%{topic: "lobby"}, socket) do
     {:noreply, update(socket)}
   end
@@ -58,7 +57,7 @@ defmodule UnoxWeb.Live.GameListView do
       string_matches?(name, search) ->
         true
 
-      Enum.any?(players, &(string_matches?(&1.name, search))) ->
+      Enum.any?(players, &string_matches?(&1.name, search)) ->
         true
 
       true ->
