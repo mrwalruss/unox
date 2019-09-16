@@ -1,8 +1,8 @@
-# Unox
+# Unox - A UNO Elixir multiplayer game
 
 This is my entry in [Phoenix Phrenzy](https://phoenixphrenzy.com), showing off what [Phoenix](https://phoenixframework.org/) and [LiveView](https://github.com/phoenixframework/phoenix_live_view) can do.
 
-![App Name Here preview](assets/static/images/preview.gif "App Name Here")
+![Unox - A UNO Elixir multiplayer game](demo.gif "Unox")
 
 ## The name
 
