@@ -6,7 +6,7 @@ defmodule Unox.Game do
             deck: [],
             discards: [],
             player_index: 0,
-            started: false
+            state: :not_started
 
   require Unox.Deck
   alias Unox.{Card, Deck, Effect, Game, Player, Utils}
@@ -25,7 +25,7 @@ defmodule Unox.Game do
 
   @spec start(Unox.Game.t()) :: Unox.Game.t()
   def start(%Game{} = game) do
-    %Game{game | started: true}
+    %Game{game | state: :started}
     |> shuffle()
     |> pop_first_card()
     |> distribute()
@@ -42,6 +42,12 @@ defmodule Unox.Game do
       %Game{game | deck: deck, discards: [top]}
     end
   end
+
+  @spec started?(Unox.Game.t()) :: boolean
+  def started?(%Game{state: state}), do: state == :started
+
+  @spec ended?(Unox.Game.t()) :: boolean
+  def ended?(%Game{state: state}), do: state == :ended
 
   @spec can_be_first_card?(Unox.Card.t()) :: boolean
   def can_be_first_card?(card), do: Card.is_black?(card)
@@ -81,7 +87,7 @@ defmodule Unox.Game do
       ) do
     player_index = player_index - 1
 
-    next_player = if player_index >= 0, do: player_index, else: (length(players) - 1)
+    next_player = if player_index >= 0, do: player_index, else: length(players) - 1
     %Game{game | player_index: next_player}
   end
 
@@ -125,9 +131,17 @@ defmodule Unox.Game do
     new_game = update_current_player(game, fn _ -> player end)
 
     with {:ok, game} <- play(new_game, card) do
-      {:ok, game}
+      {:ok, put_status(game)}
     else
       err -> err
+    end
+  end
+
+  def put_status(%Game{players: players} = game) do
+    if Enum.any?(players, &(length(&1.hand) == 0)) do
+      %Game{game | state: :ended}
+    else
+      game
     end
   end
 

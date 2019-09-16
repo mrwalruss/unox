@@ -25,7 +25,8 @@ defmodule UnoxWeb.GameView do
 
   def startable?(%Game{players: players}), do: length(players) >= @minimum_players
 
-  def is_playing?(%Game{players: players}, player_id), do: Enum.any?(players, &Utils.string_equals?(&1.id, player_id))
+  def is_playing?(%Game{players: players}, player_id),
+    do: Enum.any?(players, &Utils.string_equals?(&1.id, player_id))
 
   def is_current_player?(game, player_id), do: Game.current_player_is?(game, player_id)
 
@@ -54,13 +55,16 @@ defmodule UnoxWeb.GameView do
   def can_set_color?(game, player_id),
     do: needs_color?(game) and is_current_player?(game, player_id)
 
-  def player_item_class(%Game{started: started} = game, player_id, current_player_id) do
+  def player_item_class(%Game{} = game, player_id, current_player_id) do
     player = get_player_by_id(game, player_id)
     class = ["item"]
-    class = if Utils.string_equals?(player_id, current_player_id), do: class ++ ["you"], else: class
+
+    class =
+      if Utils.string_equals?(player_id, current_player_id), do: class ++ ["you"], else: class
+
     class =
       cond do
-        Player.has_won?(player) and started -> class ++ ["winner"]
+        Player.has_won?(player) and Game.ended?(game) -> class ++ ["winner"]
         is_current_player?(game, player_id) -> class ++ ["current"]
         true -> class
       end
@@ -68,5 +72,6 @@ defmodule UnoxWeb.GameView do
     Enum.join(class, " ")
   end
 
-  defp get_player_by_id(game, player_id), do: Enum.find(game.players, &Utils.string_equals?(&1.id, player_id))
+  defp get_player_by_id(game, player_id),
+    do: Enum.find(game.players, &Utils.string_equals?(&1.id, player_id))
 end

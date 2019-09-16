@@ -16,47 +16,52 @@
     <% end %>
   </div>
 </div>
-<%= if @game.started do %>
-  <div class="full-size">
-    <div class="table">
-      <div class="row">
-        <div class="cell">
-          <%= render_hidden_card(width: "150", class: "playable", "phx-click": "draw") %>
-          <p><%= gettext("%{count} remaining", count: length(@game.deck)) %></p>
-        </div>
-        <div class="cell">
-          <div class="stack">
-            <%= render_top_card(@game, width: "150", class: "static") %>
+<%= case @game.state do %>
+  <% :started -> %>
+    <div class="full-size">
+      <div class="table">
+        <div class="row">
+          <div class="cell">
+            <%= render_hidden_card(width: "150", class: "playable", "phx-click": "draw") %>
+            <p><%= gettext("%{count} remaining", count: length(@game.deck)) %></p>
+          </div>
+          <div class="cell">
+            <div class="stack">
+              <%= render_top_card(@game, width: "150", class: "static") %>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="auto-size colors <%= if can_set_color?(@game, @player_id), do: "visible" %>">
+    <%= for color <- colors() do %>
+      <div class="color-puck <%= color %>" phx-click="set-color" phx-value-color="<%= color %>" onclick=""></div>
+    <% end %>
+    </div>
+    <div class="auto-size">
+      <%= if is_playing?(@game, @player_id) do %>
+      <div class="player-hand">
+        <%= for {card, index} <- player_hand(@game, @player_id) do %>
+          <%= render_card(card, class: (if playable?(@game, @player_id, card), do: "playable"), "phx-click": "play", "phx-value-index": index) %>
+        <% end %>
+      </div>
+      <% end %>
   </div>
-  <div class="auto-size colors <%= if can_set_color?(@game, @player_id), do: "visible" %>">
-  <%= for color <- colors() do %>
-    <div class="color-puck <%= color %>" phx-click="set-color" phx-value-color="<%= color %>" onclick=""></div>
-  <% end %>
-  </div>
-  <div class="auto-size">
-    <%= if is_playing?(@game, @player_id) do %>
-    <div class="player-hand">
-      <%= for {card, index} <- player_hand(@game, @player_id) do %>
-        <%= render_card(card, class: (if playable?(@game, @player_id, card), do: "playable"), "phx-click": "play", "phx-value-index": index) %>
+  <% :not_started -> %>
+    <div class="full-size">
+      <%= cond do %>
+        <% owner?(@game, @player_id) -> %>
+          <button type="button" phx-click="start" <%= if not startable?(@game), do: "disabled" %>><%= gettext("Start game") %></button>
+        <% joined?(@game, @player_id) -> %>
+          <p><%= gettext("Waiting...") %></p>
+        <% not full?(@game) -> %>
+          <button type="button" phx-click="join" phx-value-player-id="<%= @player_id %>"><%= gettext("Join") %></button>
+        <% true -> %>
+          <p><%= gettext("Game is full, but you can still watch!") %></p>
       <% end %>
     </div>
-    <% end %>
-  </div>
-<% else %>
+  <% :ended -> %>
   <div class="full-size">
-    <%= cond do %>
-      <% owner?(@game, @player_id) -> %>
-        <button type="button" phx-click="start" <%= if not startable?(@game), do: "disabled" %>><%= gettext("Start game") %></button>
-      <% joined?(@game, @player_id) -> %>
-        <p><%= gettext("Waiting...") %></p>
-      <% not full?(@game) -> %>
-        <button type="button" phx-click="join" phx-value-player-id="<%= @player_id %>"><%= gettext("Join") %></button>
-      <% true -> %>
-        <p><%= gettext("Game is full, but you can still watch!") %></p>
-    <% end %>
+    <h1><%= gettext("Game has ended") %></h1>
   </div>
 <% end %>

@@ -4,12 +4,13 @@
     <p><%= gettext("Use any username to login and choose a password so you can comeback and play again later.") %></p>
     <div class="form-input">
       <label for="">Username</label>
-      <input type="text" value="<%= suggest_name() %>" name="name">
+      <input type="text" value="" name="name" placeholder="<%= suggest_name() %>">
     </div>
     <div class="form-input">
       <label for="">Password</label>
       <input type="password" value="" name="password" placeholder="Password">
     </div>
+    <p class="small"><%= gettext("You can choose any unused username and use any password, even an empty one. But if you do, don't cry if someone logs into your account and make you lose") %></p>
     <button><%= gettext("Login") %></button>
   <% end %>
 </div>

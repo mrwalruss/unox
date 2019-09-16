@@ -18,6 +18,12 @@
       justify-content: space-between;
     }
   }
+  .player {
+    text-decoration: underline;
+  }
+  .has-won {
+    color: #1fec61;
+  }
 
   .new-game {
     display: flex;
