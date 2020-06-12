@@ -8,6 +8,8 @@ defmodule Unox.Game do
             player_index: 0,
             state: :not_started
 
+  @type t() :: %__MODULE__{}
+
   require Unox.Deck
   alias Unox.{Card, Deck, Effect, Game, Player, Utils}
 

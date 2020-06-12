@@ -1,6 +1,7 @@
 defmodule Unox.Card do
   defstruct value: nil, color: nil
   alias Unox.Card
+  @type t() :: %__MODULE__{}
 
   def hidden(), do: %Card{}
 

@@ -3,8 +3,17 @@
   flex: 1;
   flex-direction: row;
   justify-content: center;
-
   padding-top: 1em;
+
+  .arrow {
+    align-items: center;
+    display: flex;
+    font-size: 30pt;
+    opacity: 0.2;
+    &.active {
+      opacity: 1;
+    }
+  }
 
   .item {
     font-size: 10pt;
@@ -18,10 +27,10 @@
       box-shadow: 0px 0px 6px #d5d5d559;
       border: 1px solid #777;
       border-radius: 5px;
-
       & > .title {
         background-color: #777;
         color: #fff;
+        position: relative;
       }
     }
 

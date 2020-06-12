@@ -1,6 +1,7 @@
 defmodule Unox.Player do
   defstruct id: nil, name: nil, hand: [], password: nil
   alias Unox.{Player, Utils}
+  @type t() :: %__MODULE__{}
 
   @type new_user :: {String.t(), String.t()}
   @spec new([new_user]) :: [Unox.Player.t()]
@@ -9,7 +10,7 @@ defmodule Unox.Player do
   @spec new(new_user) :: Unox.Player.t()
   def new({name, password}), do: %Player{id: Utils.id(), name: name, password: password}
 
-  @spec new(String.t(), String.t()) :: Unox.Player.t()
+  @spec new(binary(), binary()) :: Unox.Player.t()
   def new(id, name), do: %Player{id: id, name: name}
 
   @spec draw(Unox.Player.t(), [Unox.Card.t()]) :: Unox.Player.t()

@@ -3,13 +3,15 @@ defmodule Unox.Effect do
   alias Unox.{Card, Game, Player}
 
   @spec handle(Unox.Game.t()) :: Unox.Game.t()
+  def handle(%Game{discards: []} = game), do: game
+
   def handle(%Game{discards: [card | _]} = game), do: handle(game, card)
 
   @spec handle(Unox.Game.t(), Unox.Card.t()) :: Unox.Game.t()
   defp handle(game, %Card{value: :skip}), do: rotate_player(game)
 
   defp handle(%Game{players: players} = game, %Card{value: :switch})
-      when length(players) > 2 do
+       when length(players) > 2 do
     game
     |> reverse()
     |> rotate_player()

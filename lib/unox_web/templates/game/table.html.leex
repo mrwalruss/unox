@@ -3,6 +3,7 @@
 </div>
 <div class="auto-size" id="game" data-game-name="<%= @game.name %>">
   <div class="players">
+    <div class="arrow <%= if @game.direction == :backward, do: :active %>">←</div>
     <%= for {%{id: id, name: name, hand: hand}, _} <- Enum.with_index(@game.players) do %>
       <div class="<%= player_item_class(@game, id, @player_id) %>" phx-hook="notifyTurn">
         <div class="title"><%= name %></div>
@@ -14,6 +15,7 @@
         </div>
       </div>
     <% end %>
+    <div class="arrow <%= if @game.direction == :forward, do: :active %>">→</div>
   </div>
 </div>
 <%= case @game.state do %>
