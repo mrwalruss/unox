@@ -5,7 +5,8 @@ defmodule Unox.Application do
     children = [
       UnoxWeb.Endpoint,
       UnoxWeb.GameStore,
-      UnoxWeb.PlayerStore
+      UnoxWeb.PlayerStore,
+      {Phoenix.PubSub, [name: Unox.PubSub, adapter: Phoenix.PubSub.PG2]}
     ]
 
     opts = [strategy: :one_for_one, name: Unox.Supervisor]

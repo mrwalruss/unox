@@ -1,4 +1,4 @@
 <div class="lobby">
   <%= render("title.html", %{conn: @conn, button: %{text: "Create a game", url: Routes.lobby_path(@conn, :new)}}) %>
-  <%= live_render(@conn, UnoxWeb.Live.GameListView, session: %{player_id: @player_id}) %>
+  <%= live_render(@conn, UnoxWeb.Live.GameListView, session: %{"player_id" => @player_id}) %>
 </div>

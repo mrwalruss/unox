@@ -9,10 +9,10 @@ use Mix.Config
 
 # Configures the endpoint
 config :unox, UnoxWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "127.0.0.1"],
   secret_key_base: "GXY040WB33iQc1HBoKPNKd7bwV7X/PDojrinKgZcYLDPY4WmJugWix9CbfZ9YqEI",
   render_errors: [view: UnoxWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Unox.PubSub, adapter: Phoenix.PubSub.PG2],
+  pubsub_server: Unox.PubSub,
   live_view: [
     signing_salt: "xJvUG1PnlouZcILfDGCzIKwli+zdVf1/EBckrM8uJaFK58BmjCC1vVyhnTc6+vfu"
   ]

@@ -23,7 +23,7 @@ defmodule UnoxWeb do
 
       import UnoxWeb.ErrorHelpers
       import UnoxWeb.Gettext
-      import Phoenix.LiveView, only: [live_render: 2, live_render: 3, live_link: 1, live_link: 2]
+      import Phoenix.LiveView.Helpers
       alias UnoxWeb.Router.Helpers, as: Routes
       import UnoxWeb.Controller
       import UnoxWeb.View
